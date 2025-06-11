@@ -1,8 +1,15 @@
 {
   "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
+  "/api/auth/login": "pages/api/auth/login.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/register": "pages/register.js",
-  "/login": "pages/login.js"
+  "/dashboard/mortgage": "pages/dashboard/mortgage.html",
+  "/api/auth/register": "pages/api/auth/register.js",
+  "/api/auth/logout": "pages/api/auth/logout.js",
+  "/dashboard/homeowner": "pages/dashboard/homeowner.html",
+  "/dashboard/admin": "pages/dashboard/admin.html",
+  "/_error": "pages/_error.js",
+  "/register": "pages/register.html",
+  "/login": "pages/login.html",
+  "/": "pages/index.html",
+  "/404": "pages/404.html"
 }

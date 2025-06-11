@@ -1,42 +1,67 @@
 {
   "polyfillFiles": [
-    "static/chunks/polyfills.js"
+    "static/chunks/polyfills-42372ed130431b0a.js"
   ],
-  "devFiles": [
-    "static/chunks/react-refresh.js"
-  ],
+  "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/development/_buildManifest.js",
-    "static/development/_ssgManifest.js"
+    "static/-OANGZUWy327A75kA1xxO/_buildManifest.js",
+    "static/-OANGZUWy327A75kA1xxO/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "rootMainFilesTree": {},
   "pages": {
     "/": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/index.js"
+      "static/chunks/webpack-eb5d1c11adaf4b8a.js",
+      "static/chunks/framework-2f335d22a7318891.js",
+      "static/chunks/main-7829d89f65896896.js",
+      "static/chunks/230-5443ad96548554c5.js",
+      "static/chunks/pages/index-28a5fe8d01ec944e.js"
     ],
     "/_app": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/_app.js"
+      "static/chunks/webpack-eb5d1c11adaf4b8a.js",
+      "static/chunks/framework-2f335d22a7318891.js",
+      "static/chunks/main-7829d89f65896896.js",
+      "static/css/9839d85d5aa761ed.css",
+      "static/chunks/pages/_app-8b2219e3b52a5c42.js"
     ],
     "/_error": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/_error.js"
+      "static/chunks/webpack-eb5d1c11adaf4b8a.js",
+      "static/chunks/framework-2f335d22a7318891.js",
+      "static/chunks/main-7829d89f65896896.js",
+      "static/chunks/pages/_error-6ba75d581b05348e.js"
+    ],
+    "/dashboard/admin": [
+      "static/chunks/webpack-eb5d1c11adaf4b8a.js",
+      "static/chunks/framework-2f335d22a7318891.js",
+      "static/chunks/main-7829d89f65896896.js",
+      "static/chunks/pages/dashboard/admin-e0299f81f5121ae0.js"
+    ],
+    "/dashboard/homeowner": [
+      "static/chunks/webpack-eb5d1c11adaf4b8a.js",
+      "static/chunks/framework-2f335d22a7318891.js",
+      "static/chunks/main-7829d89f65896896.js",
+      "static/chunks/pages/dashboard/homeowner-9902b102c034fcde.js"
+    ],
+    "/dashboard/mortgage": [
+      "static/chunks/webpack-eb5d1c11adaf4b8a.js",
+      "static/chunks/framework-2f335d22a7318891.js",
+      "static/chunks/main-7829d89f65896896.js",
+      "static/chunks/pages/dashboard/mortgage-0f3d6d712b76658d.js"
     ],
     "/login": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/login.js"
+      "static/chunks/webpack-eb5d1c11adaf4b8a.js",
+      "static/chunks/framework-2f335d22a7318891.js",
+      "static/chunks/main-7829d89f65896896.js",
+      "static/chunks/230-5443ad96548554c5.js",
+      "static/chunks/pages/login-b79685b24b6933c7.js"
     ],
     "/register": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/register.js"
+      "static/chunks/webpack-eb5d1c11adaf4b8a.js",
+      "static/chunks/framework-2f335d22a7318891.js",
+      "static/chunks/main-7829d89f65896896.js",
+      "static/chunks/230-5443ad96548554c5.js",
+      "static/chunks/pages/register-6f23f3e3ebc92ba1.js"
     ]
   },
   "ampFirstPages": []
