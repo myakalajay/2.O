@@ -1,65 +1,37 @@
-<<<<<<< HEAD
-// POST /api/auth/register
-// Registers a new user with hashed password
-
-import dbConnect from '../../../lib/dbConnect';
+import dbConnect from '../../../utils/dbConnect';
 import User from '../../../models/User';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') return res.status(405).end();
+  if (req.method !== 'POST') return res.status(405).json({ message: 'Method not allowed' });
 
-  const { username, password, role } = req.body;
+  const { name, email, password, role, nmlsId } = req.body;
 
-  await dbConnect();
+  try {
+    await dbConnect();
 
-  // Check if user exists
-  const existingUser = await User.findOne({ username });
-  if (existingUser) {
-    return res.status(400).json({ message: 'Username already taken' });
+    const existingUser = await User.findOne({ email });
+    if (existingUser) return res.status(400).json({ message: 'Email already exists' });
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = new User({
+      name,
+      email,
+      password: hashedPassword,
+      role,
+      nmlsId: role === 'mortgage' ? nmlsId : null,
+    });
+
+    await newUser.save();
+
+    const token = jwt.sign({ userId: newUser._id, role: newUser.role }, process.env.SECRET_KEY, {
+      expiresIn: '1h',
+    });
+
+    res.status(201).json({ token });
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error });
   }
-
-  const passwordHash = await bcrypt.hash(password, 10);
-
-  const user = new User({
-    username,
-    passwordHash,
-    role: role || 'homeowner',
-  });
-
-  await user.save();
-  res.status(201).json({ message: 'User registered successfully' });
 }
-=======
-// POST /api/auth/register
-// Registers a new user with hashed password
-
-import dbConnect from '../../../lib/dbConnect';
-import User from '../../../models/User';
-import bcrypt from 'bcryptjs';
-
-export default async function handler(req, res) {
-  if (req.method !== 'POST') return res.status(405).end();
-
-  const { username, password, role } = req.body;
-
-  await dbConnect();
-
-  // Check if user exists
-  const existingUser = await User.findOne({ username });
-  if (existingUser) {
-    return res.status(400).json({ message: 'Username already taken' });
-  }
-
-  const passwordHash = await bcrypt.hash(password, 10);
-
-  const user = new User({
-    username,
-    passwordHash,
-    role: role || 'homeowner',
-  });
-
-  await user.save();
-  res.status(201).json({ message: 'User registered successfully' });
-}
->>>>>>> 37699c39feb6fc1d37c3a2ec38806ea85ecce4ab

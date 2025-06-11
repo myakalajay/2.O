@@ -1,109 +1,36 @@
-<<<<<<< HEAD
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+import Layout from '../components/Layout';
 
 export default function Register() {
-  const router = useRouter();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [role, setRole] = useState('homeowner');
-  const [error, setError] = useState('');
-
-  async function handleRegister(e) {
+  const [form, setForm] = useState({ name: '', email: '', password: '', role: 'homeowner', nmlsId: '' });
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     const res = await fetch('/api/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password, role }),
+      body: JSON.stringify(form)
     });
-
     const data = await res.json();
-
-    if (res.ok) {
-      router.push('/login');
-    } else {
-      setError(data.message || 'Registration failed');
-    }
-  }
-
+    if (res.ok) alert('Registration successful'); else alert(data.msg);
+  };
   return (
-    <div className="container mt-5">
+    <Layout>
       <h2>Register</h2>
-      {error && <div className="alert alert-danger">{error}</div>}
-      <form onSubmit={handleRegister}>
-        <div className="mb-3">
-          <label>Username</label>
-          <input className="form-control" value={username} onChange={(e) => setUsername(e.target.value)} required />
-        </div>
-        <div className="mb-3">
-          <label>Password</label>
-          <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </div>
-        <div className="mb-3">
-          <label>Role</label>
-          <select className="form-select" value={role} onChange={(e) => setRole(e.target.value)}>
-            <option value="homeowner">Homeowner</option>
-            <option value="mortgage">Mortgage Professional</option>
-          </select>
-        </div>
-        <button className="btn btn-success">Register</button>
+      <form onSubmit={handleSubmit}>
+        <input className="form-control mb-2" name="name" placeholder="Name" onChange={handleChange} />
+        <input className="form-control mb-2" name="email" placeholder="Email" onChange={handleChange} />
+        <input className="form-control mb-2" name="password" type="password" placeholder="Password" onChange={handleChange} />
+        <select className="form-control mb-2" name="role" onChange={handleChange}>
+          <option value="homeowner">Homeowner</option>
+          <option value="mortgage">Mortgage Professional</option>
+          <option value="admin">Admin</option>
+        </select>
+        {form.role === 'mortgage' && (
+          <input className="form-control mb-2" name="nmlsId" placeholder="NMLS ID" onChange={handleChange} />
+        )}
+        <button className="btn btn-primary">Register</button>
       </form>
-    </div>
+    </Layout>
   );
 }
-=======
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-
-export default function Register() {
-  const router = useRouter();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [role, setRole] = useState('homeowner');
-  const [error, setError] = useState('');
-
-  async function handleRegister(e) {
-    e.preventDefault();
-
-    const res = await fetch('/api/auth/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password, role }),
-    });
-
-    const data = await res.json();
-
-    if (res.ok) {
-      router.push('/login');
-    } else {
-      setError(data.message || 'Registration failed');
-    }
-  }
-
-  return (
-    <div className="container mt-5">
-      <h2>Register</h2>
-      {error && <div className="alert alert-danger">{error}</div>}
-      <form onSubmit={handleRegister}>
-        <div className="mb-3">
-          <label>Username</label>
-          <input className="form-control" value={username} onChange={(e) => setUsername(e.target.value)} required />
-        </div>
-        <div className="mb-3">
-          <label>Password</label>
-          <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </div>
-        <div className="mb-3">
-          <label>Role</label>
-          <select className="form-select" value={role} onChange={(e) => setRole(e.target.value)}>
-            <option value="homeowner">Homeowner</option>
-            <option value="mortgage">Mortgage Professional</option>
-          </select>
-        </div>
-        <button className="btn btn-success">Register</button>
-      </form>
-    </div>
-  );
-}
->>>>>>> 37699c39feb6fc1d37c3a2ec38806ea85ecce4ab
